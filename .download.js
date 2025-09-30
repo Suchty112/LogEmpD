@@ -53,20 +53,6 @@ fetch(GAME)
             readme.toString().replace(
                 /<!--\s*automated\s-->(.|\n)*?<!--\s*\/automated\s*-->/,
                 `
-<!-- automated -->
-## JS
-| Attribute | Value |
-| --------- | ----- |
-| File      | [${jsPath.replace(/^\/assets\//, '')}](${GAME}${jsPath}) |
-| Server    | ${GAME} |
-| Time      | ${timestamp} |
-
-## CSS
-| Attribute | Value |
-| --------- | ----- |
-| File      | [${cssPath.replace(/^\/assets\//, '')}](${GAME}${cssPath}) |
-| Server    | ${GAME} |
-| Time      | ${timestamp} |
 
 ## Pretty-print
 Tool: [prettier](https://prettier.io)
