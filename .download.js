@@ -4,7 +4,7 @@ const jsdom = require('jsdom');
 
 const PATH = path.resolve(__dirname);
 
-const defaultGame = 'https://missionchief.co.uk';
+const defaultGame = 'https://game.logistics-empire.com/';
 const GAME = process.env.GAME || defaultGame;
 
 const suffix = GAME === defaultGame ? '' : '.alt';
@@ -16,10 +16,10 @@ fetch(GAME)
     .then(html => new jsdom.JSDOM(html))
     .then(dom => dom.window.document)
     .then(doc => ({
-        js: doc.querySelector('script[src^="/assets/application-"][src$=".js"]')
+        js: doc.querySelector('script[src^="/assets/index-"][src$=".js"]')
             ?.src,
         css: doc.querySelector(
-            'link[href^="/assets/application-"][href$=".css"]'
+            'link[href^="/assets/index-"][href$=".css"]'
         )?.href,
     }))
     .then(files => {
@@ -35,10 +35,10 @@ fetch(GAME)
     .then(({ js, css, jsPath, cssPath }) =>
         Promise.all([
             fs
-                .writeFile(path.resolve(PATH, `application${suffix}.js`), js)
+                .writeFile(path.resolve(PATH, `index${suffix}.js`), js)
                 .then(() => jsPath),
             fs
-                .writeFile(path.resolve(PATH, `application${suffix}.css`), css)
+                .writeFile(path.resolve(PATH, `index${suffix}.css`), css)
                 .then(() => cssPath),
         ])
     )
